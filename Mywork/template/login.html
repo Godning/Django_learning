@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="StyleSheet" type="text/css"
+	href="/statics/css/loginstyle.css" />
+<script type="text/javascript" src='/statics/js/jquery-1.11.3.min.js'></script>
+<title>Login</title>
+</head>
+<body>
+	<div id='main'>
+	<table border="0" align="center" style="font-size:13px;" width="300">  
+        <tr>  
+            <td align="center" colspan="2"><div id="con"></div></td>  
+        </tr>  
+        <tr>  
+            <td align="right" height="30">用户名：</td><td><input type="text" name="username" id="user" class="text" /></td>  
+        </tr>  
+        <tr>  
+            <td align="right" height="30">密码：</td><td><input type="password" name="password" id="password" class="text" /></td>  
+        </tr>  
+        <tr>  
+            <td align="center" colspan="2"><input type="button" id="btn" value="登录" /> <input type="button" value="重置" id="re" /></td>  
+        </tr>  
+    </table>  
+	</div>
+	
+<script>
+//var btn = document.getElementById('btn');  
+//var re = document.getElementById('re');  
+//var user = document.getElementById('user');  
+//var password = document.getElementById('password');  
+btn.onclick = function(){  
+
+		$.get('/auth/?username='+document.getElementById('user').value+'&password='+document.getElementById('password').value,{},function(user){
+			console.log(user);
+			var con = document.getElementById('con'); 
+			if (user){
+				con.innerHTML = '<font color="green">登录成功，跳转中...</font>'; 
+				alert("登录成功，跳转中...")
+	        	location = '/index/'; // 登录成功后指定跳转页面
+			}else{
+				con.innerHTML = '<font color="red">帐号或密码错误！</font>';
+			}
+		});
+}
+
+	
+re.onclick = function(){  
+	 user.value="";  
+	 password.value="";
+}
+</script>	
+	
+</body>
+</html>
