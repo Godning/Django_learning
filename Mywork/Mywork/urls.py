@@ -23,7 +23,14 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.Index),
     url(r'^index/', views.Index),
+    url(r'^region/$', views.Menu),
+]
+#login
+urlpatterns += [
     url(r'^login/', views.Login),
     url(r'^auth/$', views.Auth),
+]
+#test
+urlpatterns += [
     url(r'^region/$', views.Menu),
 ]
