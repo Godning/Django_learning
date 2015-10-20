@@ -25,7 +25,7 @@ def Auth(request):
         return render_to_response('index.html',{'username':user})
     except Exception,e:
 #         data={'error':'username or password wrong!'}
-        return  HttpResponse()
+        return  HttpResponse("<h1 align ='center'>404 Not found</h1>")
     
 def Menu(request):
 #     user=request.GET['val']
