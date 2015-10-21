@@ -30,7 +30,13 @@ urlpatterns += [
     url(r'^login/', views.Login),
     url(r'^auth/$', views.Auth),
 ]
+#upload
+urlpatterns += [
+    url(r'^upload/$', views.uploadFile),
+]
 #test
 urlpatterns += [
     url(r'^region/$', views.Menu),
 ]
+
+
