@@ -18,14 +18,16 @@ def Login(request):
 
 def Auth(request):
     try:
+        print request.POST
         global name
-        name = request.GET['username']
-        passwd = request.GET['password']
+        name = request.POST.get('username')
+        passwd = request.POST.get('password')
+        print name,passwd
         user = User.objects.get(name=name,password=passwd)
         return render_to_response('index.html',{'username':user})
     except Exception,e:
 #         data={'error':'username or password wrong!'}
-        return  HttpResponse("<h1 align ='center'>404 Not found</h1>")
+        return  HttpResponse()
     
 def Menu(request):
 #     user=request.GET['val']
