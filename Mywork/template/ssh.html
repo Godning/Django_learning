@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ssh</title>
+<link rel="StyleSheet" type="text/css"
+	href="/statics/css/loginstyle.css" />
+<script type="text/javascript" src='/statics/js/jquery-1.11.3.min.js'></script>
+</head>
+<body>
+	<h1 align='center'>Welcome</h1>
+	<div id='main'>
+		<table border="0" align="center" style="font-size: 13px;" width="300">
+			<tr>
+				<td align="center" colspan="2"><div id="con"></div></td>
+			</tr>
+			<tr>
+				<td align="right" height="30">命令</td>
+				<td><input type="text" name="command" id="command_line"
+					class="text" /></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input type="button"
+					id="connect" value="connect" /> <input type="button" value="send"
+					id="send" /></td>
+			</tr>
+		</table>
+	</div>
+	<script>
+		var connect = document.getElementById('connect');
+		var send = document.getElementById('send');
+		var con = document.getElementById('con');
+		connect.onclick = function() {
+			$.post('/connect/', {
+				'ip' : '127.0.0.1',
+				'port' : '50007'
+			}, function(rlt) {
+				console.log(rlt);
+				if (rlt) {
+					con.innerHTML = '<font color="green">登录成功，已连接...</font>';
+					// alert("登录成功，跳转中...")
+				} else {
+					con.innerHTML = '<font color="red">登录失败，帐号或密码错误！</font>';
+				}
+			});
+		}
+		send.onclick = function() {
+			var command = document.getElementById('command_line').value;
+			console.log(command);
+			$.post('/send/', {
+				'cmd' : command
+			}, function(rlt) {
+				console.log(rlt);
+				con.innerHTML = '<font color="blue"> ' + rlt + ' </font>';
+			});
+		}
+	</script>
+</body>
+</html>
