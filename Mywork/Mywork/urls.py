@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from app01 import views
+from ssh.views import SSH,Connect,SendCommand
 import settings
 
 urlpatterns = [
@@ -33,6 +34,12 @@ urlpatterns += [
 #upload
 urlpatterns += [
     url(r'^upload/$', views.uploadFile),
+]
+#ssh
+urlpatterns += [
+    url(r'^ssh/$', SSH),
+    url(r'^connect/$', Connect),
+    url(r'^send/$', SendCommand),
 ]
 #test
 urlpatterns += [

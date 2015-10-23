@@ -37,6 +37,7 @@ def uploadFile(request):
         for f in files:
             newFile = UploadFiles()
             newFile.files = f
+            
             with open(f.title, 'wb+') as destination:
                 for lines in destination.readlines():
                     print lines
