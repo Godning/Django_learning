@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from app01 import views
-from ssh.views import SSH,Connect,SendCommand
+from ssh.views import SSH,Connect,log,SendCommand
 import settings
 
 urlpatterns = [
@@ -26,10 +26,11 @@ urlpatterns = [
     url(r'^index/', views.Index),
     url(r'^region/$', views.Menu),
 ]
-#login
+#login & logout
 urlpatterns += [
     url(r'^login/', views.Login),
     url(r'^auth/$', views.Auth),
+    url(r'^logout/$',views.Logout)
 ]
 #upload
 urlpatterns += [
@@ -40,6 +41,7 @@ urlpatterns += [
     url(r'^ssh/$', SSH),
     url(r'^connect/$', Connect),
     url(r'^send/$', SendCommand),
+    url(r'^log/$', log),
 ]
 #test
 urlpatterns += [

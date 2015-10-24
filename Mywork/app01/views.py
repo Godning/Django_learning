@@ -7,24 +7,32 @@ import json
 
 # Create your views here.
 
-name=""
-
 def Index(request):
-    
-    return render_to_response('index.html',{'username':name})
+    try:
+        user = User.objects.get(id=request.session['member_id'])
+        return render_to_response('index.html',{'username':user})
+    except Exception,e:
+        return render_to_response('index.html',{'username':'visitor'})
 
 def Login(request):
     
     return render_to_response('login.html')
 
+def Logout(request):
+    try:
+        del request.session['member_id']
+    except KeyError:
+        pass
+    return HttpResponse("<script>alert('you logout!');location = '/index/';</script>")
+
 def Auth(request):
     try:
         print request.POST
-        global name
         name = request.POST.get('username')
         passwd = request.POST.get('password')
         print name,passwd
         user = User.objects.get(name=name,password=passwd)
+        request.session['member_id'] = user.id
         return render_to_response('index.html',{'username':user})
     except Exception,e:
 #         data={'error':'username or password wrong!'}
