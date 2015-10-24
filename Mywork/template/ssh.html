@@ -15,14 +15,18 @@
 				<td align="center" colspan="2"><div id="con"></div></td>
 			</tr>
 			<tr>
-				<td align="right" height="30">命令</td>
+				<td align="right" height="30">命令：</td>
 				<td><input type="text" name="command" id="command_line"
 					class="text" /></td>
 			</tr>
 			<tr>
-				<td align="center" colspan="2"><input type="button"
-					id="connect" value="connect" /> <input type="button" value="send"
-					id="send" /></td>
+				<td align="center" colspan="2">
+				<input type="button" id="connect" value="connect" /> 
+				<input type="button" id="send" value="send"  /></td>
+			</tr>
+			<tr>
+				<td align="right" >日志：</td>
+				<td><input type="button"  id="log" value="log" /></td>
 			</tr>
 		</table>
 	</div>
@@ -51,8 +55,14 @@
 				'cmd' : command
 			}, function(rlt) {
 				console.log(rlt);
-				con.innerHTML = '<font color="blue"> ' + rlt + ' </font>';
+				if (rlt == "Server is not connected!")
+				alert("Server is not connected!");
+				else
+					con.innerHTML = '<font color="blue"> ' + rlt + ' </font>';
 			});
+		}
+		log.onclick = function() {
+			self.location='/log/';
 		}
 	</script>
 </body>

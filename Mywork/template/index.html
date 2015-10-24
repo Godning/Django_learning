@@ -5,6 +5,23 @@
 <title>MissionOffer</title>
 </head>
 <body>
- 	<h1 align ='center'>Welcome {{ username }}</h1>
+	<h1 align='center'>Welcome {{ username }}</h1>
+	{% if username != 'visitor' %}
+	<input type="button" value="logout" id="logout" />
+	<script>
+		var logout = document.getElementById('logout');
+		logout.onclick = function() {
+			self.location = '/logout/';
+		}
+	</script>
+ 	{% else %}
+ 	<input type="button" value="login" id="login" />
+ 	 <script>
+		var login = document.getElementById('login');
+		login.onclick = function() {
+			self.location = '/login/';
+		}
+	 </script>
+ 	{% endif %}
 </body>
 </html>
